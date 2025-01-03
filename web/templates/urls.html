@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}URL Analysis Results{% endblock %}
+
+{% block content %}
+<h1>URL Analysis</h1>
+
+{% if result %}
+    <h2>Analysis Result for: {{ url }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Security Vendor</th>
+                <th>Detection</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vendor, details in result['data']['attributes']['results'].items() %}
+            <tr>
+                <td>{{ vendor }}</td>
+                <td class="status-{{ 'clean' if details['result'] == 'clean' else 'malicious' if details['result'] == 'malicious' else 'suspicious' }}">
+                    {{ details['result']|capitalize }}
+                </td>
+                <td>{{ details.get('category', 'N/A') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No results to display. Submit a URL for analysis.</p>
+{% endif %}
+
+<h2>Submit a New URL</h2>
+<form method="POST" action="/urls">
+    <label for="url">URL:</label>
+    <input type="text" id="url" name="url" placeholder="Enter URL to analyze" required>
+    <button type="submit">Analyze</button>
+</form>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}File Analysis Results{% endblock %}
+
+{% block content %}
+<h1>File Analysis</h1>
+
+{% if result %}
+    <h2>Analysis Results for File: {{ file_name }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Security Vendor</th>
+                <th>Detection</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vendor, details in result['data']['attributes']['results'].items() %}
+            <tr>
+                <td>{{ vendor }}</td>
+                <td class="status-{{ 'clean' if details['result'] == 'clean' else 'malicious' if details['result'] == 'malicious' else 'suspicious' }}">
+                    {{ details['result']|capitalize }}
+                </td>
+                <td>{{ details.get('category', 'N/A') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Additional File Information</h2>
+    <ul>
+        <li><strong>SHA256:</strong> {{ result['data']['attributes']['sha256'] }}</li>
+        <li><strong>MD5:</strong> {{ result['data']['attributes']['md5'] }}</li>
+        <li><strong>Size:</strong> {{ result['data']['attributes']['size'] }} bytes</li>
+    </ul>
+{% else %}
+    <p>No results to display. Upload a file for analysis.</p>
+{% endif %}
+
+<h2>Submit a New File</h2>
+<form method="POST" action="/file" enctype="multipart/form-data">
+    <label for="file">File:</label>
+    <input type="file" id="file" name="file" required>
+    <button type="submit">Analyze</button>
+</form>
+{% endblock %}

@@ -1,0 +1,123 @@
+/* General styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('/static/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000; /* Black color */
+    color: white;
+    padding: 10px 20px;
+}
+
+.navbar .brand {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #f4a261; /* Highlight color */
+}
+
+/* Container styles */
+.container {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 50px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Headings */
+h1, h2 {
+    color: #f4d03f;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+table th {
+    background-color: #4caf50;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #2e2e2e;
+}
+
+table tr:hover {
+    background-color: #575757;
+}
+
+/* Status styles */
+.status-clean {
+    color: green;
+    font-weight: bold;
+}
+
+.status-malware {
+    color: red;
+    font-weight: bold;
+}
+
+.status-suspicious {
+    color: orange;
+    font-weight: bold;
+}
+
+/* Additional spacing for content */
+.container {
+    padding: 20px;
+    margin-top: 50px;
+}
+.container h1, .container h2 {
+    color: #f4d03f;
+    margin-bottom: 15px;
+}
+
+.container p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.container ul {
+    margin-left: 20px;
+    list-style-type: disc;
+}
+
+.container ul li {
+    margin-bottom: 10px;
+}
